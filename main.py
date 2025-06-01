@@ -39,15 +39,6 @@ def merge_sort(arr):
             j += 1
             k += 1
 
-def quick_sort(arr):
-    if len(arr) <= 1:
-        return arr
-    pivot = arr[len(arr) // 2]
-    left = [x for x in arr if x < pivot]
-    mid = [x for x in arr if x == pivot]
-    right = [x for x in arr if x > pivot]
-    return quick_sort(left) + mid + quick_sort(right)
-
 def time_function(func, arr):
     start = time.perf_counter()
     if func.__name__ == 'quick_sort':
@@ -60,14 +51,13 @@ def run_analysis():
     sizes = [100, 500, 1000, 2000]
     algorithms = {
         'Bubble Sort': bubble_sort,
-        'Merge Sort': merge_sort,
-        'Quick Sort': quick_sort
-    }
+        'Merge Sort': merge_sort
+        }
 
     results = []
     for size in sizes:
         for name, func in algorithms.items():
-            for run in range(3):
+            for run in range(2):
                 arr = random.sample(range(size * 10), size)
                 exec_time = time_function(func, arr)
                 results.append({'Algorithm': name, 'Size': size, 'Time (s)': exec_time})
@@ -99,17 +89,8 @@ def display_results(df):
 
     complexity_map = {
         "Bubble Sort": "O(n²)",
-        "Merge Sort": "O(n log n)",
-        "Quick Sort": "O(n log n) avg / O(n²) worst"
+        "Merge Sort": "O(n log n)"
     }
-
-    text_box.delete("1.0", tk.END)
-    text_box.insert(tk.END, "Average Execution Time Table (in seconds):\n\n")
-    text_box.insert(tk.END, table_data.to_string())
-    text_box.insert(tk.END, "\n\nTheoretical Time Complexities:\n")
-    for alg, comp in complexity_map.items():
-        text_box.insert(tk.END, f"{alg}: {comp}\n")
-
 
     text_box.delete("1.0", tk.END)
     text_box.insert(tk.END, "Average Execution Time Table (in seconds):\n\n")
@@ -129,7 +110,7 @@ frame.pack(padx=10, pady=10)
 btn = tk.Button(root, text="Run Analysis", command=run_analysis)
 btn.pack(pady=10)
 
-text_box = tk.Text(root, height=10, width=80)
+text_box = tk.Text(root, height=12, width=80)
 text_box.pack(padx=10, pady=10)
 
 root.protocol("WM_DELETE_WINDOW", on_closing)
