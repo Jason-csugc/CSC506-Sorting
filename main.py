@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import ttk
 import random
 import time
 import pandas as pd
@@ -7,7 +6,6 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import sys
 
-# Sorting algorithms
 def bubble_sort(arr):
     for i in range(len(arr)):
         for j in range(len(arr) - i - 1):
@@ -84,7 +82,6 @@ def display_results(df):
     canvas.draw()
     canvas.get_tk_widget().pack()
 
-    # Display table and Big O
     table_data = avg_df.pivot(index='Size', columns='Algorithm', values='Time (s)').round(6)
 
     complexity_map = {
@@ -100,7 +97,6 @@ def display_results(df):
         text_box.insert(tk.END, f"{alg}: {comp}\n")
 
 
-# GUI setup
 root = tk.Tk()
 root.title("Sorting Algorithm Analyzer")
 
