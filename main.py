@@ -39,10 +39,7 @@ def merge_sort(arr):
 
 def time_function(func, arr):
     start = time.perf_counter()
-    if func.__name__ == 'quick_sort':
-        func(arr.copy())
-    else:
-        func(arr.copy())
+    func(arr.copy())
     return time.perf_counter() - start
 
 def run_analysis():
